@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Chelapp</title>
-</head>
-<body>
-	<h1>Este es el home</h1>
-</body>
-</html>
+{% extends 'base.html'%}
+
+{% block content %}
+	<br><br>
+	<div align="center">
+		<h1>HOME</h1>
+		<p></p>
+		<small><em>{{ post.fecha }}</em></small>
+		<small><em>{{ post.autor }}</em></small>
+	</div>
+{% endblock content %}

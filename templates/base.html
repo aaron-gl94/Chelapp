@@ -1,0 +1,48 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Chelapp</title>
+		<link rel="stylesheet" href="{%static 'css/normalize.css'%}">
+		<link rel="stylesheet" href="{%static 'css/skeleton.css'%}">
+		<link rel="stylesheet" href="{%static 'css/custom.css'%}">
+		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body>
+		<br>
+		<div align="center"><h3 class="masthead-brand">CHELAPP</h3></div>
+		<div class="navbar-spacer"></div>
+    	<nav class="navbar">
+      		<div class="container" align="center">
+        		<ul class="navbar-list">
+                  <li class="navbar-item"><a class="navbar-link" href="#">Home</a></li>
+                  {% if request.user.is_authenticated %}
+                  		<li class="navbar-item"><a class="navbar-link" href="#"> Tu perfil </a></li>
+                  		<li class="navbar-item"><a class="navbar-link" href="#"> Nuevo post </a></li>
+                  		<li class="navbar-item"><a class="navbar-link" href="#"> Cerrar Sesión </a></li>
+                  		{%else%}
+			      		<li class="navbar-item"><a class="navbar-link" href="#">  Iniciar sesión</a></li>
+					{% endif %}
+                  <li><a class="navbar-link" href="#">Contacto</a></li>
+                </ul>
+      		</div>
+    	</nav>
+    	<div class="navbar-spacer"></div>
+			<div aling="center">
+				{% block content %}
+				
+				{% endblock content %}
+			</div>
+		</div>
+	<footer class="page-footer white-text">
+		<div align="center">
+            <div class="container"><small><em>Chelapp© 2016 Copyright</em></small></div>
+			<small><em>Priscila / Armando / Oswaldo / Aarón</em></small>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	</body>
+</html>
