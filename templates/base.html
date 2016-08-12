@@ -7,14 +7,11 @@
 		<link rel="stylesheet" href="{%static 'css/normalize.css'%}">
 		<link rel="stylesheet" href="{%static 'css/skeleton.css'%}">
 		<link rel="stylesheet" href="{%static 'css/custom.css'%}">
-		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{%static 'css/chelastyle.css'%}">
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
-		<br>
-		<div align="center"><h3 class="masthead-brand">CHELAPP</h3></div>
-		<div class="navbar-spacer"></div>
     	<nav class="navbar">
       		<div class="container" align="center">
         		<ul class="navbar-list">
@@ -26,17 +23,18 @@
                   		{%else%}
 			      		<li class="navbar-item"><a class="navbar-link" href="#">  Iniciar sesión</a></li>
 					{% endif %}
-                  <li><a class="navbar-link" href="#">Contacto</a></li>
+                  <li><div align="right"><a class="navbar-link" href="#">Contacto</a></div></li>
                 </ul>
       		</div>
     	</nav>
-    	<div class="navbar-spacer"></div>
-			<div aling="center">
+		<div class="slide header" style="background-image: url('{% static "images/cerveza.jpg"%}');")><h1> Hola mono!</h1></div>
+			<div class="container" aling="center">
 				{% block content %}
 				
 				{% endblock content %}
 			</div>
-		</div>
+    		
+    	</div>
 	<footer class="page-footer white-text">
 		<div align="center">
             <div class="container"><small><em>Chelapp© 2016 Copyright</em></small></div>
