@@ -6,7 +6,7 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<title>Chelapp©</title>
+		<title>{% block titulo %}{% endblock titulo %}</title>
 
 		<link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
 		<link href="{%static 'css/carousel.css'%}" rel="stylesheet">
@@ -24,7 +24,7 @@
 	            		<span class="icon-bar"></span>
 	            		<span class="icon-bar"></span>
           			</button>
-          			<a class="navbar-brand" href="#">Chelapp</a>
+          			<a class="navbar-brand" href="{%url 'home'%}">Chelapp</a>
         		</div>
         		<div id="navbar" class="navbar-collapse collapse">
           			<ul class="nav navbar-nav navbar-right">
@@ -34,11 +34,11 @@
             				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sesión <span class="caret"></span></a>
                   			<ul class="dropdown-menu">
 			                    {% if request.user.is_authenticated %}
-	                  				<li class="navbar-item"><a class="navbar-link" href="#"> Tú perfil </a></li>
+	                  				<li class="navbar-item"><a class="navbar-link" href="{%url 'profile'%}"> Tú perfil </a></li>
 	                  				<li class="navbar-item"><a class="navbar-link" href="#"> Nueva compra </a></li>
-	                  				<li class="navbar-item"><a class="navbar-link" href="#"> Cerrar sesión </a></li>
+	                  				<li class="navbar-item"><a class="navbar-link" href="{%url 'logout'%}"> Cerrar sesión </a></li>
 	                  				{%else%}
-				      				<li class="navbar-item"><a class="navbar-link" href="#">  Iniciar sesión</a></li>
+				      				<li class="navbar-item"><a class="navbar-link" href="{%url 'login'%}">  Iniciar sesión</a></li>
 								{% endif %}
                   			</ul>
                 		</li>
@@ -52,8 +52,7 @@
 		
 
 		<footer class="footer">
-			<div align="center">
-				<br>
+			<div align="center" style="padding:10px">
 	        	<small><em>Copyright© 2016 Chelapp, Inc. &middot;<a href="#">Términos legales</a></em></small><br>
 				<small><em>Priscila / Armando / Oswaldo / Aarón</em></small>
 			</div>
