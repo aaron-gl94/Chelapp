@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Productos</title>
+  </head>
+  <style media="screen">
+  .callout.secondary {
+    width: 25%;
+  }
+  .position {
+    display: inline-block;
+  }
+  </style>
+  <body>
+    {% for product in products %}
+    <div class="row">
+      <div class="callout secondary">
+        <a href="{{product.get_absolute_url}}"><img src="/media/{{product.picture}}" alt=""/></a>
+      </div>
+    </div>
+    {% empty %}
+      <h2>No hay Pisto :(</h2>
+    {% endfor %}
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.3/foundation.min.css">
+    <!-- Compressed JavaScript -->
+    <script src="https://cdn.jsdelivr.net/foundation/6.2.3/foundation.min.js"></script>
+  </body>
+</html>

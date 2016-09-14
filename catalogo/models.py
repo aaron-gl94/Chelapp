@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.urlresolvers import reverse
 
 
 class TypeProduct(models.Model):
@@ -7,10 +7,13 @@ class TypeProduct(models.Model):
 
     def __str__(self):
         return self.name_subcategory
-        
+
 class Category(models.Model):
     name_category = models.CharField(max_length=50)
-    type_product = models.ManyToManyField(TypeProduct, related_name='type_product')
+    type_product = models.ManyToManyField(
+        TypeProduct,
+        related_name='type_product'
+    )
 
     def __str__(self):
         return self.name_category
@@ -27,14 +30,33 @@ class Product(models.Model):
         ('Alemania','Alemania'),
     )
     name_product = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey(Category, related_name='category')
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+    category = models.ForeignKey(
+        Category,
+        related_name='category'
+    )
     description = models.TextField()
     picture = models.ImageField(upload_to='products')
-    type_product = models.ForeignKey(TypeProduct, related_name='type_drink')
+    type_product = models.ForeignKey(
+        TypeProduct,
+        related_name='type_drink'
+    )
     available = models.BooleanField(default=False)
     presentacion = models.CharField(max_length=30)
-    country = models.CharField(max_length=10,choices=COUNTRY_CHOICE, blank=True, null=True)
+    country = models.CharField(
+        max_length=10,choices=COUNTRY_CHOICE,
+        blank=True,
+        null=True
+    )
+    slug = models.SlugField(
+        max_length = 200,
+    )
+
+    def get_absolute_url(self):
+        return reverse('catalogo:detalle', args=[self.slug])
 
     def __str__(self):
         return self.name_product
