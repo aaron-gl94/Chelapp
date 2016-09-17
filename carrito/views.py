@@ -33,8 +33,8 @@ class Detail(View):
 		cart = Cart(request)
 		form = CartAddProductForm()
 		context={
-		'cart':cart,
-		'form':form
+			'cart':cart,
+			'form':form
 		}
 		return render(request,'cart/detail.html',context)
 

@@ -1,19 +1,23 @@
 {% extends 'base.html'%}
 {%load static%}
-
+{% block titulo %}Nosotros | Chelapp{% endblock titulo %}
 {% block styles %}
   <link href="{%static 'css/carousel.css'%}" rel="stylesheet">
 {% endblock styles %}
 
 
 {% block content %}
-	<div class="container">
+	<div class="container" style="padding: 5%">
 		<h3>MODALIDADES DE VENTA</h3>
-		<h2>MAYOREO A DOMICILIO - LLAMA A TU SUCURSAL MÁS CERCANA</h2>
-		<p>El mayoreo lo manejamos únicamente a centros de consumo (bares, restaurantes, hoteles, etc.) y estos pueden estar establecidos en cualquier parte de la República. Te podemos atender desde cualquiera de nuestras sucursales. ¡Llámanos! Cientos de establecimientos confían su abasto en nosotros. ¡Prueba nuestro rápido y confiable servicio de entrega!</p>
-		<h2>MENUDEO A DOMICILIO - TIENDA EN LINEA</h2>
-
-		<p>- En la tienda en linea de este sitio podrás comprar al menudeo con entrega a domicilio a partir de $350 pesos de compra y recibirlo en la comodidad de tu hogar en más de 600 municipios de nuestro hermoso México. Tienes más de 180 cervezas diferentes para elegir desde 1 botella. Tu compra incluye gastos de envio dependiendo el monto y la zona. El tiempo de entrega depende de la zona. Dentro de Querétaro, para los municipios de Querétaro y Corregidora tenemos entrega a domicilio gratuita a partir de $750 pesos de compra. </p>
+		<div class="col-md-6">
+			<h4>MAYOREO A DOMICILIO - LLAMA A CHELAPP!</h4>
+			<p>El mayoreo lo manejamos únicamente a centros de consumo (bares, restaurantes, hoteles, etc.) y estos pueden estar establecidos en cualquier parte de Pachuca o alrededores. Te podemos atender desde sede (Por definir). ¡Llámanos! Varios establecimientos confían su abasto en nosotros. ¡Prueba nuestro rápido y confiable servicio de entrega!</p>
+		</div>
+		<div class="col-md-6">
+			<h4>MENUDEO A DOMICILIO - TIENDA EN LINEA</h4>
+			<p>En la tienda en linea de este sitio podrás comprar al menudeo con entrega a domicilio a partir de $350 pesos de compra y recibirlo en la comodidad de tu hogar. Tienes una gran gama de cervezas para elegir desde 1 botella. Tu compra incluye gastos de envio dependiendo el monto y la zona. El tiempo de entrega depende de la zona. Dentro de Pachuca tenemos entrega a domicilio gratuita a partir de $750 pesos de compra. </p>
+		</div>
+		
 	</div>
 
 {% endblock content%}

@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{%block titulo%}Pagar usando PayPal{%endblock titulo%}
+
+{%block content%}
+
+	<div align="center">
+		<h4>Selecciona tu forma de pago:</h4>
+		<div class="divider"></div>
+		<p>
+			{{form.render}}
+		</p>
+	</div>
+
+{%endblock content%}

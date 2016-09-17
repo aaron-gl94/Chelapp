@@ -156,3 +156,6 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 SOCIAL_AUTH_TWITTER_KEY = 'QNK28B67vnLaPKxEoFbxKkl07'
 SOCIAL_AUTH_TWITTER_SECRET = 'fmigkj3jkeTjm3gHw3RN3nwm6HwNdwWzmNPCvzH76nJVnaBiRg'
+
+# Django-paypal Configuracion
+PAYPAL_RECEIVER_EMAIL = 'aaron_admb94@hotmail.com'

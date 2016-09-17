@@ -1,45 +1,53 @@
 {%extends 'base.html'%}
 {%load static%}
+{%load staticfiles%}
+
+{% block styles %}
+	td {
+		text-align:center;
+	}
+{% endblock styles %}
 {%block content%}
+
 <section class="carrito">
-<h1>Compra, compra compraaaaaaaaaaaaaa</h1>
-<table >
-	<thead>
-		<tr>
-			<th>Image</th>
-			<th>Product</th>
-			<th>Quantity</th>
-			<th>Remove</th>
-			<th>Price</th>
-			<th>SubTotal</th>
-		</tr>
-	</thead>
-	<tbody>
+	<div align="center" style="padding: 5%">
+	<h1>Carro de compras</h1>
+	<table border="1px">
+		<thead>
+			<tr>
+				<th>Imagen</th>
+				<th>Producto</th>
+				<th>Cantidad</th>
+				<th>Acción</th>
+				<th>Precio</th>
+				<th>Subtotal</th>
+			</tr>
+		</thead>
+		<tbody>
 		{%for item in cart%}
 			{%with product=item.product%}
 			<tr>
 				<td>
-					<img src="/media/{{product.image.url}}" width="200" height="200">
+					<img src="/media/{{product.picture}}" width="50%">
 				</td>
 				<td>
-					{{product.name}}
+					{{product.name_product}}
 				</td>
 				<td>
 					{{item.quantity}}
+				</td>
+				<td>
+					<p><a class="btn"href="{%url 'cart:cart_remove' product.id%}">Quitar</a></p>
 					<form action="{%url 'cart:cart_add' product.id%}" method="post">
 						{% csrf_token %}
 						{{form.as_p}}
 						<input type="submit" value="Update">
 					</form>
-
 				</td>
-				<td>
-					<a href="{%url 'cart:cart_remove' product.id%}">Remove</a>
-				</td>
-				<td>
+				<td width="15%">
 					$ {{item.price}}
 				</td>
-				<td>
+				<td width="15%">
 					$ {{item.total_price}}
 				</td>
 			</tr>
@@ -52,8 +60,9 @@
 		</tr>
 	</tbody>
 </table>
+</div>
 
-<a href="{%url 'catalogo:products'%}"><button>Keep buying</button></a>
-<a><button>Pay</button></a>
+	<a href="{%url 'catalogo:products'%}"><button>Seguir comprando</button></a>
+	<a href="{%url 'orders:create'%}"><button>Pagar</button></a>
 </section>
 {%endblock content%}
