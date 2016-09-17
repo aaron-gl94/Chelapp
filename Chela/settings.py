@@ -19,7 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'accounts',
+    #'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'catalogo',
     'social.apps.django_app.default',
     'taggit',
+    
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,6 +57,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #social
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -118,22 +122,20 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
-from django.core.urlresolvers import reverse_lazy
+
 #LOGIN_REDIRECT_URL = reverse_lazy('posts:lista')
 # LOGIN_URL = reverse_lazy('')
 # LOGOUT_URL = reverse_lazy('')
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'accounts.authentication.EmailAuthBackend',
-    'accounts.authentication.TelAuthBackend',
-    'social.backends.facebook.Facebook2OAuth2',
-    'social.backends.twitter.TwitterOAuth',
+  
+    'social.backends.facebook.FacebookOAuth2',
+    #'social.backends.twitter.TwitterOAuth',
     )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1256020564432850'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'ef99d6dba2bf5b00d225fc72a1ed43c9'
+SOCIAL_AUTH_FACEBOOK_KEY = '609826265856361'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'f7c29034d28bcbe38ac960ce551f1b8e'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
-SOCIAL_AUTH_TWITTER_KEY = 'QNK28B67vnLaPKxEoFbxKkl07'
-SOCIAL_AUTH_TWITTER_SECRET = 'fmigkj3jkeTjm3gHw3RN3nwm6HwNdwWzmNPCvzH76nJVnaBiRg'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/catalogo"
+
