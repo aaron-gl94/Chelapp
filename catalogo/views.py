@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 from .models import Product, Category
+from carrito.forms import CartAddProductForm
 # Create your views here.
 
 class ProductListView(View):
@@ -23,7 +24,10 @@ class ProductDetailView(View):
     def get(self, request, slug):
         template_name = 'catalogo/detail_product.html'
         product = get_object_or_404(Product, slug=slug)
+        form=CartAddProductForm()
+
         context = {
             'product':product,
+            'form':form
         }
         return render(request, template_name, context)

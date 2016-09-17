@@ -1,5 +1,6 @@
 {%load static%}
 {% load catalogo_tags %}
+{%load profile_tag%}
 <!DOCTYPE html>
 <html lang="es-mx">
 	<head>
@@ -32,9 +33,38 @@
         		</div>
         		<div id="navbar" class="navbar-collapse collapse">
           			<ul class="nav navbar-nav navbar-right">
-            			<li><a href="#Nosotros">Nosotros</a></li>
-                		<li><a href="#Contacto">Contacto</a></li>
-            			<li class="dropdown">
+            			
+                		<li>
+                			<p>
+		
+								{%with total_items=cart|length%}
+								{%if cart|length > 0%}
+								Tu carrito:<a href="{%url 'cart:cart_detail'%}">
+									{{total_items}} item{{total_items|pluralize}}, $ {{cart.get_total_price}}
+								</a>
+								{%else%}
+								the cart is empty
+								{%endif%}
+								{%endwith%}
+							</p>
+                		</li>
+                		<li>
+                			<p>
+								{% if user and not user.is_anonymous %}
+								Hi {{ user.get_full_name }}.
+								<!--{{request.user.email}}-->
+								<img src="http://graph.facebook.com/{%image_profile request%}/picture?type=large" width="10%" height="10%">
+
+					 			<a href="{% url 'user-logout' %}">Logout</a>
+					 
+					 			{% else %}
+								 <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+								 Enter with Facebook
+								 </a>
+								 {% endif %}
+							</p>
+                		</li>
+            			<!--<li class="dropdown">
             				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sesión <span class="caret"></span></a>
                   			<ul class="dropdown-menu">
 			                    {% if request.user.is_authenticated %}
@@ -45,7 +75,7 @@
 				      				<li class="navbar-item"><a class="navbar-link" href="{%url 'login'%}">  Iniciar sesión</a></li>
 								{% endif %}
                   			</ul>
-                		</li>
+                		</li>-->
           			</ul>
         		</div>
       		</div>
