@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import Profile
-
+from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
-from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
+from taggit.models import Tag
 
 class Dashboard(View):
 	@method_decorator(login_required)
@@ -14,8 +13,8 @@ class Dashboard(View):
 		userform = UserEditForm(instance=request.user)
 		profileform = ProfileEditForm(instance=request.user.profile)
 		context = {
-		'userform':userform,
-		'profileform':profileform,
+			'userform':userform,
+			'profileform':profileform,
 		}
 		return render(request,template_name,context)
 	def post(self,request):
@@ -28,8 +27,8 @@ class Dashboard(View):
 			return redirect('profile')
 		else:
 			context={
-			'userform':userform,
-			'profileform':profileform,
+				'userform':userform,
+				'profileform':profileform,
 			}
 			return render(request,template_name,context)
 		
@@ -39,7 +38,7 @@ class Registration(View):
 		template_name = "accounts/registration.html"
 		form = UserRegistrationForm()
 		context = {
-		'form':form,
+			'form':form,
 		}
 		return render(request,template_name,context)
 
@@ -61,10 +60,3 @@ class Registration(View):
 			'form':new_user_form
 			}
 			return render(request,template_name,context)
-
-
-
-
-
-
-

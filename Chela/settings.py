@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'main',
     'catalogo',
     'social.apps.django_app.default',
-    'taggit',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -52,6 +51,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -125,15 +126,19 @@ from django.core.urlresolvers import reverse_lazy
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'accounts.authentication.EmailAuthBackend',
+    #'accounts.authentication.EmailAuthBackend',
     'accounts.authentication.TelAuthBackend',
-    'social.backends.facebook.Facebook2OAuth2',
+    'social.backends.facebook.FacebookOAuth2',
     'social.backends.twitter.TwitterOAuth',
     )
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1256020564432850'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ef99d6dba2bf5b00d225fc72a1ed43c9'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email',]
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'locale':'ru_RU',
+    'fields':'id, name, email, age_range'
+}
 
 SOCIAL_AUTH_TWITTER_KEY = 'QNK28B67vnLaPKxEoFbxKkl07'
 SOCIAL_AUTH_TWITTER_SECRET = 'fmigkj3jkeTjm3gHw3RN3nwm6HwNdwWzmNPCvzH76nJVnaBiRg'

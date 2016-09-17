@@ -7,6 +7,56 @@ body {
   color: #5a5a5a;
 }
 
+/*PARALLAX HOME*/
+.para-1, .para-2, .para-3 {
+
+  position: relative;
+  opacity: 0.55;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.para-1 {
+  background-image: url("../images/parallax1.jpg");
+  min-height: 400px;
+}
+
+.para-2 {
+  background-image: url("../images/parallax2.png");
+  min-height: 400px;
+}
+
+.para-3 {
+  background-image: url("../images/parallax3.jpg");
+  min-height: 400px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 5px;
+}
+
+h3 {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -56,8 +106,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
-  height: 500px;
+  min-width: 150%;
+  height: 100%;
 }
 
 
@@ -82,7 +132,7 @@ body {
 ------------------------- */
 
 .featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  margin: 20px 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -121,6 +171,7 @@ body {
     font-size: 21px;
     line-height: 1.4;
   }
+
 
   .featurette-heading {
     font-size: 50px;

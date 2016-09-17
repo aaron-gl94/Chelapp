@@ -1,23 +1,32 @@
 {%extends 'base.html'%}
 {%load static%}
+{%load profiles_tags%}
 
-{% block titulo %}Login{% endblock titulo %}
+{% block titulo %}
+Login
+{% endblock titulo %}
+
+{% block styles %}
+	<link href="{%static 'css/signin.css'%}" rel="stylesheet">
+{% endblock styles %}
+
 {% block content %}
-		<br><br><br><br>
-		<div align="center">
+		<br><br>
+		<div align="center" style="padding: 3%;">
 			{%if form.errors%}
-				<p>Tu usuario y contraseña no concuerdan, porfavor intenta nuevamente</p>
+				<h2 class="form-signin-heading">Tu usuario y contraseña no concuerdan, porfavor intenta nuevamente</h2>
 				{%else%}
-					<p>Ingresa con tu nombre de usuario y contraseña</p>
+					<h3 class="form-signin-heading">Ingresa con tu nombre de usuario y contraseña</h3>
 			{%endif%}
-
-			<form action="{%url 'login'%}" method="post">
-				{%csrf_token%}
-				{{form.as_p}}
-				<input type="hidden" name="next" value="{{next}}"> 
-				<input type="submit" value="Iniciar Sesión">
-			</form>
-			<p> Si quieres registrarte con tu cuenta de <a href="{% url 'social:begin' 'facebook' %}">Facebook</a> ó <a href="{% url 'social:begin' 'twitter' %}">Twitter</a> puedes hacerlos desde estos links.</p>
+			<div>
+				<form class="form-signin" action="{%url 'login'%}" method="post">	
+					{%csrf_token%}
+					{{form.as_p}}
+					<input type="hidden" name="next" value="{{next}}"> 
+					<input class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión">
+				</form>
+			</div>
+			<p> Puedes registrarte con tu cuenta de <a href="{% url 'social:begin' 'facebook' %}">Facebook</a> ó <a href="{% url 'social:begin' 'twitter' %}">Twitter</a>.</p>
 			<p>Si aún no tienes una cuenta puedes crearla <a href="{%url 'registro'%}">aquí</a></p>
 		</div>
 {% endblock content %}

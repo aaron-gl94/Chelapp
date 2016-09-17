@@ -1,16 +1,21 @@
+{%extends 'base.html'%}
 {%load static%}
 
 {% block titulo %}Registro{% endblock titulo %}
 
+{% block styles %}
+	<link href="{%static 'css/signin.css'%}" rel="stylesheet">
+{% endblock styles %}
+
 {% block content %}
-	<div align="center">
-	<h1>Usuario nuevo</h1>
-		<form action="." method="post">
+	<br>
+		<div align="center" style="padding:3%">
+			<h2 aling="center" class="form-signin-heading">Usuario nuevo</h4></div>
+			<form class="form-signin" class="form-control" action="." method="post">
 			{%csrf_token%}
 			{{form.as_p}}
-
-			<input type="submit" value="Crear usuario">
-		</form>
-	</div>
+			<input class="btn btn-primary btn-block" type="submit" value="Crear usuario">
+			</form>
+		</div>
 
 {% endblock content %}
