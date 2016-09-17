@@ -1,30 +1,43 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Productos</title>
-  </head>
-  <style media="screen">
-  .callout.secondary {
-    width: 25%;
-  }
-  .position {
-    display: inline-block;
-  }
-  </style>
-  <body>
+{% extends "base.html" %}
+{% block titulo %}Productos{% endblock titulo %}
+
+
+{% block estilos %}
+img {
+  height: 250px !important;
+}
+.row {
+  position: relative;
+  padding-top: 2%;
+}
+{% endblock estilos %}
+{% block content %}
+<div class="row">
     {% for product in products %}
-    <div class="row">
-      <div class="callout secondary">
-        <a href="{{product.get_absolute_url}}"><img src="/media/{{product.picture}}" alt=""/></a>
+
+      <div class="col s12 m3">
+        <div class="card large">
+        <div class="card-image waves-effect">
+          <a href="{{product.get_absolute_url}}" ><img class="responsive-img" src="/media/{{product.picture}}"/></a>
+        </div>
+        <div class="card-content card-title activator grey-text text-darken-4">
+          {{product.name_product}}
+          <p>
+            ${{product.price}}
+          </p>
+        </div>
       </div>
-    </div>
+      </div>
+
+
+
     {% empty %}
       <h2>No hay Pisto :(</h2>
     {% endfor %}
-    <!-- Compressed CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.3/foundation.min.css">
-    <!-- Compressed JavaScript -->
-    <script src="https://cdn.jsdelivr.net/foundation/6.2.3/foundation.min.js"></script>
-  </body>
-</html>
+      </div>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+{% endblock content %}
