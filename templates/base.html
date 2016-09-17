@@ -1,5 +1,6 @@
 {%load static%}
 {% load catalogo_tags %}
+{%load profile_tag%}
 <!DOCTYPE html>
 <html lang="es-mx">
 	<head>
@@ -17,24 +18,66 @@
 	</head>
 	<style>
 		{% block estilos %}{% endblock estilos %}
+		.profile-img {
+    border: solid 1px;
+    border-radius: 50%;
+    width: 8%;
+		}
 	</style>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
-        		<div class="navbar-header">
-          			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            		<span class="sr-only"></span>
-	            		<span class="icon-bar"></span>
-	            		<span class="icon-bar"></span>
-	            		<span class="icon-bar"></span>
-          			</button>
-          			<a class="navbar-brand" href="{%url 'home'%}">Chelapp</a>
-        		</div>
-        		<div id="navbar" class="navbar-collapse collapse">
-          			<ul class="nav navbar-nav navbar-right">
-            			<li><a href="#Nosotros">Nosotros</a></li>
-                		<li><a href="#Contacto">Contacto</a></li>
-            			<li class="dropdown">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="waves-effect waves-light btn-small" href="{%url 'home'%}">Chelapp</a>
+					{%FilterCategory as cats%}
+					<ul class="nav navbar-nav navbar-right">
+						{%for cat in cats%}
+						<li style="display: inline-block;">
+							<a class="waves-effect waves-light btn-small" href="{%url 'catalogo:list_filter' cat.name_category%}">
+								<h5>{{cat.name_category}}</h5>
+							</a>
+						</li>
+						{%empty%}
+						<h2>No hay</h2>
+						{%endfor%}
+						<li style="display: inline-block;">
+							<a class="waves-effect waves-light btn-small" href="{%url 'catalogo:products'%}"><h5>Todo</h5></a>
+						</li>
+					</ul>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li style="display: inline-block;">
+							{%with total_items=cart|length%}
+							{%if cart|length > 0%}
+							Tu carrito:<a href="{%url 'cart:cart_detail'%}">
+								{{total_items}} item{{total_items|pluralize}}, $ {{cart.get_total_price}}
+							</a>
+							{%else%}
+							the cart is empty
+							{%endif%}
+							{%endwith%}
+						</li>
+						<li style="display: inline-block;">
+								{% if user and not user.is_anonymous %}
+								Hi {{ user.get_full_name }}.
+								<!--{{request.user.email}}-->
+								<img class="profile-img" src="http://graph.facebook.com/{%image_profile request%}/picture?type=large" >
+								<button class="btn waves-effect waves-light"><a href="{% url 'user-logout' %}">Logout</a></button>
+					 			{% else %}
+								<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+									Enter with Facebook
+							 	</a>
+								{% endif %}
+
+                		</li>
+            			<!--<li class="dropdown">
             				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sesión <span class="caret"></span></a>
                   			<ul class="dropdown-menu">
 			                    {% if request.user.is_authenticated %}
@@ -45,33 +88,20 @@
 				      				<li class="navbar-item"><a class="navbar-link" href="{%url 'login'%}">  Iniciar sesión</a></li>
 								{% endif %}
                   			</ul>
-                		</li>
+                		</li>-->
           			</ul>
         		</div>
       		</div>
     	</nav>
 
-			<div style="padding-top: 5%;">
-
-			{%FilterCategory as cats%}
-			<ul>
-			{%for cat in cats%}
-				<li style="display: inline-block;">
-					<a class="waves-effect waves-light btn-large" href="{%url 'catalogo:list_filter' cat.name_category%}">
-						<h5>{{cat.name_category}}</h5>
-					</a>
-				</li>
-			{%empty%}
-			<h2>No hay</h2>
-			{%endfor%}
-			<li style="display: inline-block;">
-				<a class="waves-effect waves-light btn-large" href="{%url 'catalogo:products'%}"><h5>Todo</h5></a>
-			</li>
-			</ul>
-		</div>
 
 		{% block content %}
 		{% endblock content %}
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
 
 		<footer class="footer">

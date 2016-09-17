@@ -3,12 +3,12 @@
 
 
 {% block estilos %}
-img {
+.size-img {
   height: 250px !important;
 }
 .row {
   position: relative;
-  padding-top: 2%;
+  padding-top: 5%;
 }
 {% endblock estilos %}
 {% block content %}
@@ -18,7 +18,7 @@ img {
       <div class="col s12 m3">
         <div class="card large">
         <div class="card-image waves-effect">
-          <a href="{{product.get_absolute_url}}" ><img class="responsive-img" src="/media/{{product.picture}}"/></a>
+          <a href="{{product.get_absolute_url}}" ><img class="responsive-img size-img" src="/media/{{product.picture}}"/></a>
         </div>
         <div class="card-content card-title activator grey-text text-darken-4">
           {{product.name_product}}
