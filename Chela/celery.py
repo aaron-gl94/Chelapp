@@ -4,7 +4,7 @@ from django.conf import settings
 
 #Seteamos el módulo settings de Django para que trabaje con celery
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','nikestore.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','Chela.settings')
 
 app = Celery('Chela')
 
