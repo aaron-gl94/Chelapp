@@ -1,0 +1,8 @@
+<h5 style="padding-left: 2%;">Productos relacionados</h5>
+{% for product in related %}
+      <li style="list-style: none; padding-left: 2%;">
+        <a href="{{product.get_absolute_url}}">
+          <h6>{{product.name_product}}</h6>
+        </a>
+      </li>
+  {% endfor %}

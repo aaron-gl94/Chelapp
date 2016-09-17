@@ -29,6 +29,11 @@ INSTALLED_APPS = [
     'main',
     'catalogo',
     'social.apps.django_app.default',
+    'taggit',
+    'carrito',
+    'orders',
+    'paypal.standard.ipn',
+    'payment',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -116,6 +121,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 
+CART_SESSION_ID = 'cart'
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
@@ -132,6 +140,7 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
     )
 
+
 SOCIAL_AUTH_FACEBOOK_KEY = '1256020564432850'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ef99d6dba2bf5b00d225fc72a1ed43c9'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email',]
@@ -139,6 +148,11 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'locale':'ru_RU',
     'fields':'id, name, email, age_range'
 }
+
+SOCIAL_AUTH_FACEBOOK_KEY = '609826265856361'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'f7c29034d28bcbe38ac960ce551f1b8e'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
 
 SOCIAL_AUTH_TWITTER_KEY = 'QNK28B67vnLaPKxEoFbxKkl07'
 SOCIAL_AUTH_TWITTER_SECRET = 'fmigkj3jkeTjm3gHw3RN3nwm6HwNdwWzmNPCvzH76nJVnaBiRg'
