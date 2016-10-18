@@ -7,6 +7,9 @@ from catalogo.models import Product
 
 
 class AddProd(View):
+	def get(self,request):
+		pass
+
 	def post(self,request,product_id):
 		cart = Cart(request)
 		product = get_object_or_404(Product,id=product_id)
@@ -14,13 +17,14 @@ class AddProd(View):
 		if form.is_valid():
 			cd = form.cleaned_data
 			cart.add(product=product,
-				quantity=cd['quantity'],
-				update_quantity=cd['update'])
-		#return redirect('cart:cart_detail')
+					quantity=cd['quantity'],
+					update_quantity=cd['update'])
+		return redirect('cart:cart_detail')
 		#if reverse(request.path) == '/products/':
-		return redirect('catalogo:products')
+		#return redirect('catalogo:products')
 		#else:
 		#	return redirect('products:detalle product.id')
+
 class Remove(View):
 	def get(self,request,product_id):
 		cart = Cart(request)

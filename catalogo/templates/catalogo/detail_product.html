@@ -24,7 +24,7 @@
       <td style="text-align: center">{{product.description}}</td>
     </tr>
   </table>
-    <form action="{%url 'cart:cart_add' product.id%}" method="post">
+    <form action="{%url 'cart:cart_add' product.id%}" mehod="POST">
       {% csrf_token %}
       {{form.as_p}}
       <input type="submit" value="Add to cart">
